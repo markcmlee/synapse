@@ -13,7 +13,7 @@
     <div id="incoming"></div>
   </body>
   <script>
-    const webSocket = new WebSocket("ws://localhost:3001/socket");
+    const webSocket = new WebSocket("ws://localhost:3000");
     document.addEventListener("DOMContentLoaded", function () {
       const form = document.querySelector("#form");
       form.onsubmit = function (e) {
