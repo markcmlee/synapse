@@ -15,33 +15,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("src"));
 
-// const countdown = (res, count) => {
-//   res.write("data: " + count + "\n\n");
-//   if (count) {
-//     setTimeout(() => countdown(res, count - 1), 1000);
-//   } else {
-//     res.end();
-//   }
-// };
-
-// app.get("/sse", (req, res) => {
-//   res
-//     .set({
-//       Connection: "keep-alive",
-//       "Content-Type": "text/event-stream",
-//       "Cache-Control": "no-cache",
-//     })
-//     .status(200);
-//   countdown(res, 10);
-// });
-// app.use("/", (req, res, next) => {
-//   console.log(req.headers);
-//   return next();
-// });
 enableWs(app);
 app.ws("/api", api.ws);
-app.use("/api", api.sse);
 app.use("/api", api.http);
+// app.use("/api", api.sse);
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./src/index.html"));
